@@ -26,7 +26,7 @@
             <a href="{{ url('pendidikan') }}">
                 <img src="{{ asset('images/pendidikan.png') }}" alt="Icon" class="icon"> Riwayat Pendidikan
             </a>
-            <a href="{{ url('kerja') }}">
+            <a href="{{ url('pekerjaan') }}">
                 <img src="{{ asset('images/kerja.png') }}" alt="Icon" class="icon"> Pengalaman Kerja
             </a>
             <a href="{{ url('skill') }}">
@@ -34,17 +34,15 @@
             </a>
         </div>
     </li>
-    <li><a href="{{ url('sertif') }}">
-        <img src="{{ asset('images/sertif.png') }}" alt="Icon" class="icon"> Sertifikat & Pelatihan
-    </a></li>
-    <li><a href="{{ url('unduh') }}">
+    <li><a href="{{ url('unduh-cv') }}">
         <img src="{{ asset('images/cvunduh.png') }}" alt="Icon" class="icon"> Unduh CVATS
     </a></li>
 </ul>
     </div>
     <div class="container">
         <h2>Skill & Keterampilan</h2>
-        <form>
+        <form action="{{ route('skill.store') }}" method="POST">
+            @csrf
             <div class="form-group">
                 <label for="bidang">Bidang:</label>
                 <input type="text" id="bidang" name="bidang">
@@ -69,6 +67,11 @@
                 <button type="submit">Save</button>
             </div>            
         </form>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
     </div>
     <script>
     function toggleDropdown() {
